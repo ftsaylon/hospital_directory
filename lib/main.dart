@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import 'providers/doctors.dart';
 import 'providers/specialties.dart';
 
-import 'screens/specialties_screen.dart';
-import 'screens/doctors_screen.dart';
+import 'widgets/specialties_panel.dart';
+import 'widgets/doctors_panel.dart';
+
+import 'screens/home_screen.dart';
 
 import 'helpers/custom_route.dart';
 
@@ -36,10 +38,10 @@ class MyApp extends StatelessWidget {
             },
           ),
         ),
-        home: SpecialtiesScreen(),
+        home: HomeScreen(),
         routes: {
-          SpecialtiesScreen.routeName: (context) => SpecialtiesScreen(),
-          DoctorsScreen.routeName: (context) => DoctorsScreen(),
+          SpecialtiesPanel.routeName: (context) => SpecialtiesPanel(),
+          DoctorsPanel.routeName: (context) => DoctorsPanel(),
         },
       ),
     );

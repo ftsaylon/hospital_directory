@@ -30,6 +30,13 @@ class Specialties with ChangeNotifier {
     Specialty(id: 's23', name: 'Thoracic Surgery'),
     Specialty(id: 's24', name: 'Urology'),
   ];
+  
+  String specialtyIdToDisplay;
+
+  Future<void> setSpecialtyToDisplay(String specialtyId) async {
+    specialtyIdToDisplay = specialtyId;
+    notifyListeners();
+  }
 
   List<Specialty> get items {
     return [..._items];

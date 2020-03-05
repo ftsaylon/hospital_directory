@@ -11,13 +11,17 @@ class DoctorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final doctor = Provider.of<Doctor>(context, listen: false);
-    final specialty = Provider.of<Specialties>(context, listen: false).findById(doctor.specialtyId);
+    final specialty = Provider.of<Specialties>(context, listen: false)
+        .findById(doctor.specialtyId);
 
     return Card(
       child: InkWell(
         onTap: () {},
         child: Container(
-          padding: const EdgeInsets.all(15),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 5,
+            vertical: 10,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
@@ -29,8 +33,11 @@ class DoctorItem extends StatelessWidget {
             ],
           ),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
-          ),
+              // borderRadius: BorderRadius.circular(15),
+              border: Border.all(
+            width: 1,
+            color: Theme.of(context).primaryColor,
+          )),
         ),
       ),
     );
