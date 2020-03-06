@@ -15,11 +15,6 @@ class SpecialtyItem extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).pushNamed(
-          //   DoctorsScreen.routeName,
-          //   arguments: specialty.id,
-          // );
-
           Provider.of<Specialties>(context).setSpecialtyToDisplay(specialty.id);
         },
         child: Container(

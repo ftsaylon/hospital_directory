@@ -7,6 +7,6 @@ class AdSpace extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(child: VideoApp());
+    return VideoApp();
   }
 }

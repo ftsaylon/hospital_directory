@@ -156,11 +156,21 @@ class Doctors with ChangeNotifier {
     ),
   ];
 
+  bool _showAllDoctors = false;
+
   List<Doctor> get items {
     return [..._items];
   }
 
   List<Doctor> findBySpecialty(String specialtyId) {
     return _items.where((item) => item.specialtyId == specialtyId).toList();
+  }
+
+  bool get showAllDoctors{
+    return _showAllDoctors;
+  }
+
+  Future<void> toggleShowAllDoctors() async {
+    _showAllDoctors = !_showAllDoctors;
   }
 }

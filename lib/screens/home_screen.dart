@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/specialties.dart';
+import '../providers/doctors.dart';
 
 import '../widgets/ad_space.dart';
 import '../widgets/doctors_panel.dart';
@@ -13,30 +14,20 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var specialtyId = Provider.of<Specialties>(context).specialtyIdToDisplay;
+    final specialtyId = Provider.of<Specialties>(context).specialtyIdToDisplay;
+    final showAllDoctors = Provider.of<Doctors>(context).showAllDoctors;
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: <Widget>[
-            specialtyId != null
-                ? IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Provider.of<Specialties>(context)
-                          .setSpecialtyToDisplay(null);
-                    },
-                  )
-                : Container(),
-          ],
-        ),
+        title: Center(child: Text('HOSPITAL DIRECTORY')),
       ),
       body: Container(
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
             Expanded(
               flex: 5,
-              child: specialtyId != null
+              child: (specialtyId != null || showAllDoctors)
                   ? DoctorsPanel(
                       specialtyId: specialtyId,
                     )
@@ -45,9 +36,7 @@ class HomeScreen extends StatelessWidget {
             Expanded(
               flex: 2,
               child: Container(
-                child: Center(
-                  child: const AdSpace(),
-                ),
+                child: const AdSpace(),
               ),
             ),
           ],

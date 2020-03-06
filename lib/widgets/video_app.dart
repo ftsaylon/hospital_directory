@@ -26,24 +26,30 @@ class _VideoAppState extends State<VideoApp> {
       padding: EdgeInsets.all(10),
       child: Column(
         children: <Widget>[
-          Container(
-            child: _controller.value.initialized
-                ? AspectRatio(
-                    aspectRatio: _controller.value.aspectRatio,
-                    child: VideoPlayer(_controller),
-                  )
-                : Container(),
+          Expanded(
+            flex: 3,
+            child: Container(
+              child: _controller.value.initialized
+                  ? AspectRatio(
+                      aspectRatio: _controller.value.aspectRatio,
+                      child: VideoPlayer(_controller),
+                    )
+                  : Container(),
+            ),
           ),
-          FloatingActionButton(
-            onPressed: () {
-              setState(() {
-                _controller.value.isPlaying
-                    ? _controller.pause()
-                    : _controller.play();
-              });
-            },
-            child: Icon(
-              _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+          Expanded(
+            flex: 1,
+            child: FloatingActionButton(
+              onPressed: () {
+                setState(() {
+                  _controller.value.isPlaying
+                      ? _controller.pause()
+                      : _controller.play();
+                });
+              },
+              child: Icon(
+                _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+              ),
             ),
           ),
         ],
