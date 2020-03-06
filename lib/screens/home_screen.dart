@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/specialties.dart';
 
+import '../widgets/ad_space.dart';
 import '../widgets/doctors_panel.dart';
 import '../widgets/specialties_panel.dart';
 
@@ -15,7 +16,21 @@ class HomeScreen extends StatelessWidget {
     var specialtyId = Provider.of<Specialties>(context).specialtyIdToDisplay;
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Row(
+          children: <Widget>[
+            specialtyId != null
+                ? IconButton(
+                    icon: Icon(Icons.arrow_back),
+                    onPressed: () {
+                      Provider.of<Specialties>(context)
+                          .setSpecialtyToDisplay(null);
+                    },
+                  )
+                : Container(),
+          ],
+        ),
+      ),
       body: Container(
         child: Row(
           children: <Widget>[
@@ -31,7 +46,7 @@ class HomeScreen extends StatelessWidget {
               flex: 2,
               child: Container(
                 child: Center(
-                  child: const Text('Ad Space'),
+                  child: const AdSpace(),
                 ),
               ),
             ),

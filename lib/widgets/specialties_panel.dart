@@ -16,7 +16,7 @@ class SpecialtiesPanel extends StatelessWidget {
     final specialties = specialtiesData.items;
 
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: GridView.builder(
         itemCount: specialties.length,
         itemBuilder: (context, index) => ChangeNotifierProvider.value(

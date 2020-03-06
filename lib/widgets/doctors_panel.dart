@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_directory/providers/specialties.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/doctors.dart';
@@ -14,13 +15,16 @@ class DoctorsPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+    final PreferredSizeWidget appBar = AppBar();
+
     final doctorsData = Provider.of<Doctors>(context);
     final doctors = specialtyId != 's0'
         ? doctorsData.findBySpecialty(specialtyId)
         : doctorsData.items;
 
     return Container(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(10.0),
       child: GridView.builder(
         itemCount: doctors.length,
         itemBuilder: (context, index) => ChangeNotifierProvider.value(
