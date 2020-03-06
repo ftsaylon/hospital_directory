@@ -45,6 +45,7 @@ class SpecialtiesPanel extends StatelessWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
+          SizedBox(height: 10),
           Expanded(
             flex: 14,
             child: GridView.builder(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_directory/providers/doctors.dart';
 import 'package:provider/provider.dart';
 
 import '../models/doctor.dart';
@@ -16,7 +17,9 @@ class DoctorItem extends StatelessWidget {
 
     return Card(
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Provider.of<Doctors>(context).setSelectedDoctor(doctor.id);
+        },
         child: Container(
           padding: const EdgeInsets.symmetric(
             horizontal: 5,
