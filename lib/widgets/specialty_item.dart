@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hospital_directory/providers/panel_routes.dart';
 import 'package:provider/provider.dart';
 
 import '../models/specialty.dart';
 
+import '../providers/panel_routes.dart';
 import '../providers/specialties.dart';
-import 'doctors_panel.dart';
+
+import '../widgets/doctors_panel.dart';
 
 class SpecialtyItem extends StatelessWidget {
   const SpecialtyItem({Key key}) : super(key: key);

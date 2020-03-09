@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hospital_directory/providers/panel_routes.dart';
-import 'package:hospital_directory/providers/specialties.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/doctors.dart';
+import '../providers/panel_routes.dart';
+import '../providers/specialties.dart';
 
 import '../widgets/doctor_item.dart';
-import 'specialties_panel.dart';
+import '../widgets/specialties_panel.dart';
 
 class DoctorsPanel extends StatelessWidget {
   final String specialtyId;
