@@ -7,6 +7,8 @@ class DoctorDetailsPanel extends StatelessWidget {
   final String doctorId;
 
   const DoctorDetailsPanel({Key key, this.doctorId}) : super(key: key);
+  
+  static const routeName = '/doctor-details';
 
   @override
   Widget build(BuildContext context) {

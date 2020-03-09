@@ -30,10 +30,10 @@ class Specialties with ChangeNotifier {
     Specialty(id: 's24', name: 'Urology'),
   ];
 
-  String specialtyIdToDisplay;
+  String selectedSpecialty;
 
-  Future<void> setSpecialtyToDisplay(String specialtyId) async {
-    specialtyIdToDisplay = specialtyId;
+  Future<void> setSelectedSpecialty(String specialtyId) async {
+    selectedSpecialty = specialtyId;
     notifyListeners();
   }
 

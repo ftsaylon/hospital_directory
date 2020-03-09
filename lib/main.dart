@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'providers/panel_routes.dart';
 import 'providers/doctors.dart';
 import 'providers/specialties.dart';
 
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider.value(
           value: Doctors(),
+        ),
+        ChangeNotifierProvider.value(
+          value: PanelRoutes(),
         )
       ],
       child: MaterialApp(

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_directory/providers/panel_routes.dart';
 import 'package:provider/provider.dart';
 
 import '../models/specialty.dart';
 
 import '../providers/specialties.dart';
+import 'doctors_panel.dart';
 
 class SpecialtyItem extends StatelessWidget {
   const SpecialtyItem({Key key}) : super(key: key);
@@ -15,7 +17,8 @@ class SpecialtyItem extends StatelessWidget {
     return Card(
       child: InkWell(
         onTap: () {
-          Provider.of<Specialties>(context).setSpecialtyToDisplay(specialty.id);
+          Provider.of<Specialties>(context).setSelectedSpecialty(specialty.id);
+          Provider.of<PanelRoutes>(context).setPanelToShow(DoctorsPanel.routeName);
         },
         child: Container(
           padding: const EdgeInsets.all(10),

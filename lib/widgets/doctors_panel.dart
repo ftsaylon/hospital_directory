@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_directory/providers/panel_routes.dart';
 import 'package:hospital_directory/providers/specialties.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/doctors.dart';
 
 import '../widgets/doctor_item.dart';
+import 'specialties_panel.dart';
 
 class DoctorsPanel extends StatelessWidget {
   final String specialtyId;
@@ -59,8 +61,8 @@ class DoctorsPanel extends StatelessWidget {
                     .copyWith(color: Colors.white),
               ),
               onPressed: () {
-                Provider.of<Specialties>(context).setSpecialtyToDisplay(null);
-                if(specialtyId == null) Provider.of<Doctors>(context).toggleShowAllDoctors();
+                Provider.of<Specialties>(context).setSelectedSpecialty(null);
+                Provider.of<PanelRoutes>(context).setPanelToShow(SpecialtiesPanel.routeName);
               },
               color: Theme.of(context).primaryColor,
             ),

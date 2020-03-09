@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hospital_directory/providers/panel_routes.dart';
 
 import 'package:provider/provider.dart';
 
@@ -15,9 +16,11 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final specialtyId = Provider.of<Specialties>(context).specialtyIdToDisplay;
-    final showAllDoctors = Provider.of<Doctors>(context).showAllDoctors;
+    final specialtyId = Provider.of<Specialties>(context).selectedSpecialty;
     final doctorId = Provider.of<Doctors>(context).selectedDoctor;
+
+    final panelToShow = Provider.of<PanelRoutes>(context).panelToShow ??
+        SpecialtiesPanel.routeName;
 
     return Scaffold(
       appBar: AppBar(
@@ -27,16 +30,19 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(10),
         child: Row(
           children: <Widget>[
-            if (doctorId == null)
+            if (panelToShow == DoctorsPanel.routeName)
               Expanded(
                 flex: 5,
-                child: (specialtyId != null || showAllDoctors)
-                    ? DoctorsPanel(
-                        specialtyId: specialtyId,
-                      )
-                    : SpecialtiesPanel(),
+                child: DoctorsPanel(
+                  specialtyId: specialtyId,
+                ),
               ),
-            if (doctorId != null)
+            if (panelToShow == SpecialtiesPanel.routeName)
+              Expanded(
+                flex: 5,
+                child: SpecialtiesPanel(),
+              ),
+            if (panelToShow == DoctorDetailsPanel.routeName)
               Expanded(
                 flex: 5,
                 child: DoctorDetailsPanel(

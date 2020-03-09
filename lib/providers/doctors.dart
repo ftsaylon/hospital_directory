@@ -189,19 +189,6 @@ class Doctors with ChangeNotifier {
     return doctor;
   }
 
-/* ---------------------------- Show All Doctors ---------------------------- */
-  bool _showAllDoctors = false;
-
-  bool get showAllDoctors {
-    return _showAllDoctors;
-  }
-
-  Future<void> toggleShowAllDoctors() async {
-    _showAllDoctors = !_showAllDoctors;
-  }
-
-/* -------------------------------------------------------------------------- */
-
 /* -------------------------- Show Selected Doctor -------------------------- */
   String _selectedDoctor;
 
