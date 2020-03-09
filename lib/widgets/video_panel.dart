@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:chewie/chewie.dart';
+// import 'package:chewie/chewie.dart';
 
 VideoPlayerController _controller;
-ChewieController _chewieController; // custom ui
+// ChewieController _chewieController; // custom ui
 Future<void> _initializeVideoPlayerFuture;
 
 class VideoPanel extends StatefulWidget {
@@ -14,11 +14,20 @@ class VideoPanel extends StatefulWidget {
 }
 
 class _VideoPanelState extends State<VideoPanel> {
-  var _clips = List<String>(); // video list
+  List<String> _clips = [
+    'http://www.exit109.com/~dnn/clips/RW20seconds_1.mp4',
+    'http://www.exit109.com/~dnn/clips/RW20seconds_2.mp4'
+  ]; // video list
   int _playingIndex = -1;
   bool _disposed = false;
   var _isPlaying = false;
   var _isEndPlaying = false;
+
+  @override
+  void initState() { 
+    super.initState();
+    _initializePlay(0);
+  }
 
   @override
   void dispose() {
@@ -57,8 +66,9 @@ class _VideoPanelState extends State<VideoPanel> {
     // print("file.exists: ${file.existsSync()}");
     // print("file.path: ${file.path}");
     // _controller = VideoPlayerController.file(file);
+    _controller = VideoPlayerController.network(_clips[index]);
     _controller.addListener(_controllerListener);
-    _chewieController = ChewieController(videoPlayerController: _controller);
+    // _chewieController = ChewieController(videoPlayerController: _controller);
     _initializeVideoPlayerFuture = _controller.initialize();
 
     setState(() {
@@ -89,7 +99,12 @@ class _VideoPanelState extends State<VideoPanel> {
         final isComplete = _playingIndex == _clips.length - 1;
         if (isComplete) {
           print("played all!!");
+          setState(() {
+            _playingIndex = -1;
+          });
+          _startPlay(_playingIndex + 1);
         } else {
+          print('asdasd');
           _startPlay(_playingIndex + 1);
         }
       }
@@ -111,12 +126,15 @@ Widget _playView() {
     future: _initializeVideoPlayerFuture,
     builder: (BuildContext context, AsyncSnapshot snapshot) {
       if (snapshot.connectionState == ConnectionState.done) {
-        _chewieController.play();
+        // _chewieController.play();
+        _controller.play();
         return AspectRatio(
           aspectRatio: _controller.value.aspectRatio,
-          child: Chewie(controller: _chewieController),
+          // child: Chewie(controller: _chewieController),
+          child: VideoPlayer(_controller)
         );
-      } else {
+      }
+       else {
         return SizedBox(
           height: 300,
           child: Center(child: CircularProgressIndicator()),
