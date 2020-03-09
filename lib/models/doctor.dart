@@ -10,6 +10,7 @@ class Doctor extends ChangeNotifier {
   final String contactNumber;
   final String emailAddress;
   final String distinction;
+  final String imageUrl;
   final Schedule schedule;
   bool isOnPremise;
 
@@ -22,6 +23,7 @@ class Doctor extends ChangeNotifier {
     @required this.contactNumber,
     @required this.emailAddress,
     @required this.distinction,
+    this.imageUrl,
     this.schedule,
     this.isOnPremise = false,
   });

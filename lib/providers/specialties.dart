@@ -4,7 +4,6 @@ import '../models/specialty.dart';
 
 class Specialties with ChangeNotifier {
   List<Specialty> _items = [
-    Specialty(id: 's0', name: 'Show All'),
     Specialty(id: 's1', name: 'Allergy & Immunology'),
     Specialty(id: 's2', name: 'Anesthesiology'),
     Specialty(id: 's3', name: 'Colon & Rectal Surgery'),
@@ -31,11 +30,22 @@ class Specialties with ChangeNotifier {
     Specialty(id: 's24', name: 'Urology'),
   ];
 
+  String selectedSpecialty;
+
+  Future<void> setSelectedSpecialty(String specialtyId) async {
+    selectedSpecialty = specialtyId;
+    notifyListeners();
+  }
+
   List<Specialty> get items {
     return [..._items];
   }
 
-  Specialty findById(String id){
-    return _items.firstWhere((item) => item.id == id);
+  Specialty findById(String id) {
+    Specialty specialty;
+    if (id != null) {
+      specialty = _items.firstWhere((item) => item.id == id);
+    }
+    return specialty;
   }
 }
