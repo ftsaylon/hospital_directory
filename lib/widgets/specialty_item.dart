@@ -19,7 +19,8 @@ class SpecialtyItem extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Provider.of<Specialties>(context).setSelectedSpecialty(specialty.id);
-          Provider.of<PanelRoutes>(context).setPanelToShow(DoctorsPanel.routeName);
+          Provider.of<PanelRoutes>(context)
+              .setPanelToShow(DoctorsPanel.routeName);
         },
         child: Container(
           padding: const EdgeInsets.all(10),
@@ -28,10 +29,11 @@ class SpecialtyItem extends StatelessWidget {
             style: Theme.of(context).textTheme.title,
           ),
           decoration: BoxDecoration(
-              // borderRadius: BorderRadius.circular(15),
-              border: Border.all(
-            color: Theme.of(context).primaryColor,
-          )),
+            // borderRadius: BorderRadius.circular(15),
+            border: Border.all(
+              color: Theme.of(context).primaryColor,
+            ),
+          ),
         ),
       ),
     );

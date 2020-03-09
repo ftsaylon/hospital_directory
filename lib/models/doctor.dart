@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../models/schedule.dart';
 
 class Doctor extends ChangeNotifier {
   final String id;
@@ -11,7 +10,7 @@ class Doctor extends ChangeNotifier {
   final String emailAddress;
   final String distinction;
   final String imageUrl;
-  final Schedule schedule;
+  final Map<String, String> schedule;
   bool isOnPremise;
 
   Doctor({

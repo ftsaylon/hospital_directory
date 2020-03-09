@@ -11,7 +11,7 @@ class DoctorDetailsPanel extends StatelessWidget {
   final String doctorId;
 
   const DoctorDetailsPanel({Key key, this.doctorId}) : super(key: key);
-  
+
   static const routeName = '/doctor-details';
 
   @override
@@ -38,7 +38,8 @@ class DoctorDetailsPanel extends StatelessWidget {
               ),
               onPressed: () {
                 Provider.of<Doctors>(context).setSelectedDoctor(null);
-                Provider.of<PanelRoutes>(context).setPanelToShow(DoctorsPanel.routeName);
+                Provider.of<PanelRoutes>(context)
+                    .setPanelToShow(DoctorsPanel.routeName);
               },
               color: Theme.of(context).primaryColor,
             ),
@@ -99,13 +100,50 @@ class DoctorDetailsPanel extends StatelessWidget {
               ),
             ),
           ),
-          Expanded(
-            flex: 8,
-            child: Text(
-              'Schedule',
-              style: Theme.of(context).textTheme.title.copyWith(fontSize: 24),
-            ),
-          )
+          doctor.schedule != null
+              ? Expanded(
+                  flex: 8,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Schedule',
+                        style: Theme.of(context)
+                            .textTheme
+                            .title
+                            .copyWith(fontSize: 36),
+                      ),
+                      DataTable(
+                        columns: [
+                          DataColumn(
+                            label: Text('Day'),
+                          ),
+                          DataColumn(
+                            label: Text('Time & Place'),
+                          ),
+                        ],
+                        rows: doctor.schedule.keys.map(
+                          (sched) {
+                            return DataRow(
+                              cells: [
+                                DataCell(
+                                  Text('$sched'),
+                                ),
+                                DataCell(
+                                  Text('${doctor.schedule[sched]}'),
+                                ),
+                              ],
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ],
+                  ),
+                )
+              : Expanded(
+                  flex: 8,
+                  child: SizedBox(),
+                ),
         ],
       ),
     );
